@@ -88,17 +88,14 @@ class Menu:
     def draw_menu(self):
         self.screen.blit(self.background_image, (0, 0))
 
-        # Отрисовка кнопок
         start_button = pygame.Rect(100, 300, 200, 50)
         exit_button = pygame.Rect(100, 370, 200, 50)
-        pygame.draw.rect(self.screen, (0, 128, 0), start_button)  # Зеленая кнопка "Старт"
-        pygame.draw.rect(self.screen, (128, 0, 0), exit_button)  # Красная кнопка "Выход"
+        pygame.draw.rect(self.screen, (0, 128, 0), start_button)  
+        pygame.draw.rect(self.screen, (128, 0, 0), exit_button)  
 
-        # Отрисовка текста на кнопках
         self.draw_text("Starts", (start_button.x + 70, start_button.y + 15))
         self.draw_text("Izēja", (exit_button.x + 70, exit_button.y + 15))
 
-        # Отрисовка заголовков и полей ввода
         self.draw_text("Tavas mašīnas modelis:", (100, 120), (255, 255, 255))
         self.draw_text("Citu mašīnu skaits (0-20):", (100, 200), (255, 255, 255))
 
@@ -140,28 +137,27 @@ class Player:
             self.width,  self.height = scrapParameters(carModel) #get length and width
             self.width *= 2
             self.height *= 2
-        self.angle = angle  # Угол, в котором сейчас находится автомобиль
+        self.angle = angle
         self.speed = speed
-        self.steering_angle = 0  # Угол поворота колес
-        self.max_steering_angle = 45  # Максимальный угол поворота колес
-        self.turning_speed = 3  # Угловая скорость поворота
-        self.alignment_speed = 0.5  # Скорость выравнивания колес
+        self.steering_angle = 0  
+        self.max_steering_angle = 45 
+        self.turning_speed = 3 
+        self.alignment_speed = 0.5 
         self.max_speed = 5
-        self.min_speed = -5  # Максимальная скорость заднего хода
-        self.is_reversing = False  # Флаг заднего хода
+        self.min_speed = -5  
+        self.is_reversing = False  
         self.brake_speed = 0.15
-        self.stopping_threshold = 0.1  # Порог скорости для полной остановки
-        # Load the car image and get its rect
+        self.stopping_threshold = 0.1  
+       
         CarPath = "cars/" + carModel + ".png"
         try:
-            self.image = pygame.image.load(CarPath)  # Replace with your car image path
+            self.image = pygame.image.load(CarPath)  
         except:
             self.image = pygame.image.load('cars/Audi A4.png')
 
         self.image = pygame.transform.scale(self.image, (self.width, self.height))
         self.rect = self.image.get_rect(center=(self.x, self.y))
 
-        # Adjust width and height according to the image
         self.width = self.rect.width
         self.height = self.rect.height
 
@@ -181,7 +177,7 @@ class Player:
             self.speed = 0
     
     def updateAlignment(self):
-        # Выравнивание колес, если угол поворота мал
+        # Car wheel alignment
         if -self.alignment_speed < self.steering_angle < self.alignment_speed:
             self.steering_angle = 0
         #elif self.steering_angle > 0:
@@ -190,7 +186,7 @@ class Player:
         #    self.steering_angle += self.alignment_speed
     
     def updateAngleAndVelocity(self):
-        # Обновление угла и скорости автомобиля
+       #update speed and angle
         if self.steering_angle != 0:
             turning_radius = 50 / math.sin(math.radians(self.steering_angle))
             angular_velocity = self.speed / turning_radius
@@ -219,7 +215,7 @@ class Player:
                 self.speed += 0.05
 
     def brake(self):
-         # Плавное торможение для обоих направлений
+         # moderate brake
         if self.speed > 0:
             if self.speed < self.stopping_threshold:
                 self.speed = 0
@@ -264,7 +260,7 @@ class Player:
         return parkingSpace.check_parking(self.image.get_rect(center=(self.x, self.y)))
 
 class ParkingScreen:
-     # Определение цветов и параметров
+     # define colours and parms
     WHITE = (255, 255, 255)
     GREY = (200, 200, 200)
     WIDTH, HEIGHT = 1100, 440
@@ -293,19 +289,19 @@ class ParkingScreen:
         cars = []
         parking_spots = []
 
-        # Создание списка всех парковочных мест
+        # parking spot list
         for row in range(1, 5):
             for col in range(8):
                 if col in [0, 2, 5, 7]:
-                    continue  # Пропуск центрального ряда
+                    continue  # skip central columns
                 x = (self.PARKING_SPACE_WIDTH + self.SPACING) * col + self.SPACING + self.PARKING_SPACE_WIDTH // 2
                 y = (self.PARKING_SPACE_HEIGHT + self.SPACING) * row + self.SPACING + self.PARKING_SPACE_HEIGHT // 2
                 parking_spots.append((x, y))
 
-        # Случайный выбор парковочных мест для машин
+        # random car spawn in parking spots
         for _ in range(min(num_cars, len(parking_spots))):
             x, y = random.choice(parking_spots)
-            parking_spots.remove((x, y))  # Удаляем выбранное место, чтобы не использовать его повторно
+            parking_spots.remove((x, y))  # delete spot which is already occupied
             car = Cars(x, y)
             cars.append(car)
         # draw static surface
@@ -318,7 +314,7 @@ class ParkingScreen:
         for row in range(1, 5):
             for col in range(8):
                 if col in [0, 2, 5, 7]:
-                    continue  # Пропуск центрального ряда
+                    continue  # skip central column
                 parking_spot_rect = pygame.Rect(
                     (self.PARKING_SPACE_WIDTH + self.SPACING) * col + self.SPACING,
                     (self.PARKING_SPACE_HEIGHT + self.SPACING) * row + self.SPACING,
@@ -332,16 +328,15 @@ class ParkingScreen:
         for image in explosion_images:
             screen.blit(image, position)
             pygame.display.flip()
-            clock.tick(15)  # Управление скоростью анимации
+            clock.tick(15)  # animation speed
 
 def main():
     pygame.mixer.init()
 
-    # Загрузка звукового файла
+    # upload sound file
     collision_sound = pygame.mixer.Sound('bang.wav')
     explosion_images = pygame.image.load('bang.png')
 
-   # Инициализация Pygame
     pygame.init()
     #cretate menu object 
     gameMenu = Menu()
