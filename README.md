@@ -1,8 +1,8 @@
-# parking-simulator
+# Parking-simulator
 University project on python which idea is to parse car models in real size and try to park them
 
-Automašīnu parkošanas simulators
-/ Projekta uzdevums/ideja
+#  Automašīnu parkošanas simulators
+## Projekta uzdevums/ideja
  Šī programma ir domāta kā automašīnu parkošanas simulēšanas spēle, kas var būt noderīga gan izklaidējošām aktivitātēm, gan arī mācību nolūkiem. 
 Šī programma ir domāta kā automašīnu parkošanas simulēšanas spēle, kas var būt noderīga gan izklaidējošām aktivitātēm, gan arī mācību nolūkiem. 
 Šī ideja radās pec secinājuma, ka viena no grūtākām lietām, lai nokārtotu mašīnas braukšanas eksāmenu ir tieši parkošanās. 
@@ -19,7 +19,7 @@ Tāpat kā braukšanas skolās tiek izmantotas automašīnu simulācijas, šī p
  Projekts izmanto Python programmēšanas valodu, un tāpēc to var izmantot kā resursu sākotnējām prasmēm izstrādātājiem, kas interesējas par spēļu izstrādi un vizualizāciju. 
 Izstrādātāji var izmantot šo projektu kā piemēru Python valodā rakstītas spēles izveidei un attīstīt savas programmēšanas prasmes.
 
-/Izmantotās bibliotēkas
+## Izmantotās bibliotēkas
 1. pygame
 Pygame ir bibliotēka Python valodā, kas piedāvā iespējas spēļu izstrādei un multimediju lietojumprogrammu veidošanai. 
 Šajā projektā pygame tiek izmantots visaptveroši, nodrošinot spēles logiku, grafiku, un vadības atpazīšanu.
@@ -32,7 +32,7 @@ Pygame tiek izmantots automašīnu un parkošanas vietu attēlošanai, spēles n
 selenium ir bibliotēka Python valodā, kas piedāvā automatizācijas iespējas darbā ar tīmekļa pārlūkiem. 
 Tas ir īpaši noderīgs tīmekļa lietojumprogrammu testēšanai un datu iegūšanai no tīmekļa vietnēm.
 Detalizēts izmantojums:
-selenium tiek izmantots, lai automātiski apmeklētu tīmekļa vietni "https://www.automobiledimension.com" un iegūtu informāciju par automašīnu izmēriem.
+selenium tiek izmantots, lai automātiski apmeklētu tīmekļa vietni /"https://www.automobiledimension.com" un iegūtu informāciju par automašīnu izmēriem.
 Ar šo bibliotēku tiek kontrolēts tīmekļa pārlūks (Chrome), un programmatiski tiek veiktas darbības, piemēram, noklusējuma iestatījumu maiņa vai elementu meklēšana pēc CSS selektoriem.
 selenium nodrošina iespēju iegūt konkrētas informācijas vietnes elementu vērtības, kā arī navigēt starp lapām.
 
@@ -50,58 +50,59 @@ random tiek izmantots, lai izvēlētos automašīnas attēlu gadījuma secībā,
 Šīs bibliotēkas kopā nodrošina plašu funkcionalitāti, lai izveidotu spēli ar interaktīvu lietotāja pieredzi un automatizētu datu iegūšanu no tīmekļa.
  Katra no tām sniedz savas unikālās iespējas, lai pilnveidotu projektu un nodrošinātu labu lietotāja pieredzi.
 
-/Programmatūras izmantošanas metodes
+## Programmatūras izmantošanas metodes
 Lai izmantotu šo programmatūru, ir nepieciešams Python v3.7 vai jaunāka versija, kā arī instalētas šīs bibliotēkas: pip install pygame; pip install selenium .
 
 Progrāmmā ir daudz dažādas metodes, kuras tika izmantotas:
 
-Mantotāja Saskarsme:
+### Mantotāja Saskarsme:
 Lietotājam ir nepieciešams izpildīt programmu, palaistot to no Python vides vai citiem atbilstošiem izpildes apstākļiem.
 Programma iesāk ar lietotāja interaktīvu ievadu, kur lietotājs norāda vēlamās automašīnas skaitu un specifisku mašīnas modeli.
 
-Spēles Galvenā Logika:
+### Spēles Galvenā Logika:
 Lietotājam ir jākontrolē virtuālā automašīna, izmantojot atslēgas W (paātrināšana), B (bremzēšana), Q (pagriešana pa kreisi) un E (pagriešana pa labi), R (braukšana aizmuguriski).
 Galvenais mērķis ir izvairīties no sadursmēm ar citām automašīnām un veiksmīgi ieparkoties uz norādītajām parkošanas vietām.
 
-Parkošanas Vietu Izvietošana:
+### Parkošanas Vietu Izvietošana:
 Programma izveido statisko vizuālo fonu, kas reprezentē parkošanas vietu izkārtojumu.
 Parkošanas vietas tiek attēlotas kā griesti un iekrāsotas pelēkā krāsā, bet centrālais rāmis ir atstāts brīvs transportlīdzekļu kustībai.
 
-Automobiļu Kustība un Sadursmju Pārbaude:
+### Automobiļu Kustība un Sadursmju Pārbaude:
 Katrs automobilis (gan lietotāja vadītā, gan autonomais) tiek attēlots ar savu attēlu, kas tiek parādīts uz ekrāna, pārvietojoties pa parkošanas vietām.
 Programma regulāri pārbauda sadursmes starp lietotāja vadīto automašīnu un citiem transportlīdzekļiem. Ja sadursme notiek, lietotāja vadītajai automašīnai tiek izslēgta kustība.
 
-Informācijas Parādīšana Uz Ekrāna:
+### Informācijas Parādīšana Uz Ekrāna:
 Programma parāda informāciju par lietotāja vadīto automašīnu, tās ātrumu, stāvokli un režīmu (priekšējais vai aizmugurējais) uz ekrāna.
 Lietotājam ir iespēja sekot līdzi šai informācijai, lai labāk saprastu automašīnas stāvokli un darbību.
 
-Automašīnu Izvietošana:
+### Automašīnu Izvietošana:
 Programma automātiski izvēlas un izvieto automašīnas uz parkošanas vietām, piedāvājot izklaides iespējas lietotājam.
 Gadījuma izvēle un izvietošana nodrošina atšķirīgu spēles pieredzi katru reizi, kad tiek palaidīta programma.
 
-Sadalīta izstrāde un Kļūdu Pārvaldība:
+### Sadalīta izstrāde un Kļūdu Pārvaldība:
 Programma ir sadalīta dažādos moduļos, katrs atbildēt par konkrētām funkcionalitātēm (piemēram, automašīnas vadība, datu iegūšana).
 Izmantotas kļūdu apstrādes metodes un izņēmumi, lai nodrošinātu, ka programma var apstrādāt neparedzētas situācijas un kļūdas.
 Šīs izmantotās metodes un funkcijas kopumā nodrošina lietotājam iespēju izbaudīt spēli, piedāvāt interaktīvu pieredzi un piedalīties virtuālajā parkošanas simulācijā, kurā var veicināt savas prasmes un izklaidēties.
 
+## Programmas metodes
 Pašā programmā ir izmantotas vairākas metodes, kas nodrošina programmas pareizu darbību un spēles loģiku. 
 Šeit ir apskats par galvenajām metodēm un to funkcionalitāti:
 
-scrapParameters(autoFullName)
+### scrapParameters(autoFullName)
 Šī metode tiek izmantota, lai iegūtu informāciju par automašīnas izmēriem, izmantojot tīmekļa skrapošanu ar selenium.
 Pārlūks tiek konfigurēts ar webdriver.Chrome un tiek apmeklēta tīmekļa vietne "https://www.automobiledimension.com".
 Automobiļa nosaukums tiek izmantots, lai izveidotu CSS selektoru, un pēc tam tiek iegūta informācija par automašīnas izmēriem.
 
-class Cars un class Player
+### class Cars un class Player
 Abas šīs klases piedāvā metodes draw un update, kas atbild par attēlošanu un stāvokļa atjaunošanu attiecīgi.
 draw metode izmanto pygame bibliotēku, lai attēlotu automašīnas attēlu uz ekrāna.
 update metode atjauno automašīnas stāvokli, tostarp tās atrašanās vietu un rotāciju.
 
-class ParkingScreen
+### class ParkingScreen
 Šī klase ir atbildīga par spēles vizuālo daļu, tostarp parkošanas vietu izveidi un attēlošanu uz ekrāna.
 Metodes draw_parking_lot un create_cars veic attiecīgi parkošanas vietu izveidi un automašīnu izvietošanu uz ekrāna.
 
-main()
+### main()
 Galvenā izpildes metode, kas ir atbildīga par spēles pamata darbību.
 Lietotājs tiek uzrunāts, lai ievadītu vēlamo automašīnu skaitu.
 Tiek izveidots Player objekts, ievietots spēles vidē (ParkingScreen), un izveidotas autonomās automašīnas.
